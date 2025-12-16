@@ -1,0 +1,22 @@
+services:
+  openbao-server:
+    image: openbao/openbao
+    container_name: bao_server
+    mem_swappiness: 0 
+    networks: 
+      - secured-network
+    volumes: 
+      - bao_server-volume:/home
+    command: ["server", "-dev", '-dev-root-token-id="dev-only-token"']
+  openbao-client:
+    image: ubuntu/nginx
+    container_name: bao_client
+    networks: 
+      - secured-network
+
+
+networks:
+  secured-network: {}
+
+volumes:
+  bao_server-volume:
