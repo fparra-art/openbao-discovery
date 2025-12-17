@@ -1,13 +1,13 @@
 services:
   openbao-server:
-    image: monbao
+    image: bao-server
     container_name: bao_server
     mem_swappiness: 0 
     networks: 
       - secured-network
     command: ["server", "-dev", '-dev-root-token-id="dev-only-token"']
   openbao-client:
-    image: ubuntu/nginx
+    image: bao-client
     container_name: bao_client
     networks: 
       - secured-network
